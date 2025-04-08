@@ -75,11 +75,11 @@
       z-index: 100;
     }
     
-    /* Seções principais: lobby e game; ambas dentro de uma classe "section" */
+    /* Seções principais: lobby e game; ambas possuem a classe "section" */
     .section {
       display: none;
     }
-    /* Inicialmente, a seção de lobby é exibida */
+    /* Inicialmente, a seção de lobby é visível */
     #lobby {
       display: block;
     }
@@ -92,7 +92,7 @@
       border-radius: 20px;
       padding: 30px;
       text-align: center;
-      box-shadow: 0 0 30px rgba(0,0,0,0.4);
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
       border: 8px double var(--pokemon-red);
       border-image: linear-gradient(135deg, var(--pokemon-red) 0%, var(--pokemon-yellow) 40%, var(--pokemon-blue) 100%) 1;
     }
@@ -110,22 +110,21 @@
       color: #333;
     }
     
-    /* Seção Lobby: Formulário para abrir sala e exibir lobbies disponíveis */
+    /* Seção Lobby: Formulário para abrir a sala e caixa para listar lobbies disponíveis */
     #lobby .room-form {
       margin-top: 20px;
       text-align: center;
     }
-    /* Nesta versão, o valor é fixo; informamos o custo (por exemplo, 1.0 XRP) */
+    /* Custo fixo informado na mensagem */
     #lobby .room-form p.cost-info {
       font-size: 1rem;
       margin-bottom: 20px;
       font-weight: bold;
     }
-    
     /* Caixa para listar as lobbies disponíveis */
     .lobbies-box {
       margin-top: 30px;
-      background: rgba(255, 255, 255, 0.8);
+      background: rgba(255,255,255,0.8);
       border: 3px solid var(--pokemon-blue);
       border-radius: 10px;
       padding: 20px;
@@ -213,7 +212,7 @@
       border-image: linear-gradient(45deg, var(--pokemon-yellow), var(--pokemon-red), var(--pokemon-blue)) 1;
       border-radius: 15px;
       background: rgba(255,255,255,0.8);
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -237,7 +236,7 @@
       align-self: center;
     }
     
-    /* Caixas colapsáveis (Regras e Ranking) – iguais à versão anterior */
+    /* Caixas colapsáveis para Regras e Ranking */
     .collapsible {
       margin-top: 30px;
       background: rgba(255,255,255,0.8);
@@ -326,7 +325,6 @@
     <!-- Caixa listando as lobbies disponíveis -->
     <div class="lobbies-box">
       <h2>Salas Disponíveis</h2>
-      <!-- Lista de lobbies disponíveis; esses dados são simulados -->
       <div class="lobby-entry">
         <span>Sala 1 - 1.0 XRP</span>
         <a href="#" class="cta-button join-btn">Entrar</a>
@@ -407,8 +405,8 @@
   </div>
   
   <script>
-    // Inicializa o XUMM SDK – substitua "YOUR_API_KEY_HERE" pela sua chave real
- const xumm = new XummSdk("46c2e7c6-c005-4a6d-bef7-e0b6090bc9bd" , "2d1e7336-5bc5-4035-8512-dc0f6799a7c4");
+    // Inicializa o XUMM SDK com sua API Key e API Secret (substitua pelos valores reais)
+    const xumm = new XummSdk("46c2e7c6-c005-4a6d-bef7-e0b6090bc9bd", "2d1e7336-5bc5-4035-8512-dc0f6799a7c4");
     
     document.getElementById("connect-wallet").addEventListener("click", async (e) => {
       e.preventDefault();
@@ -421,7 +419,7 @@
         const result = await payload.resolved;
         if (result.signed) {
           alert("Carteira conectada! Endereço: " + result.account);
-          // Aqui você deve implementar a lógica para carregar os NFTs do usuário.
+          // Implemente aqui a lógica para carregar os NFTs do usuário.
         } else {
           alert("Conexão cancelada.");
         }
@@ -431,7 +429,7 @@
       }
     });
     
-    /* Lógica de simulação para inserir e selecionar NFTs (para teste, remova em produção)
+    /* Lógica de simulação para inserir e selecionar NFTs (para testes; remova ou substitua em produção)
        Garante que cada treinador possa selecionar apenas UM NFT.
     */
     let selection1 = null;
@@ -507,7 +505,7 @@
       header.addEventListener('click', () => {
         const content = header.nextElementSibling;
         const toggleIcon = header.querySelector('.toggle-icon');
-        // Alterna entre exibir e ocultar o conteúdo usando display
+        // Alterna a exibição do conteúdo
         if (content.style.display === 'block') {
           content.style.display = 'none';
           toggleIcon.textContent = '[+]';
@@ -521,10 +519,10 @@
     // Lógica para alternar da seção Lobby para a seção Game
     document.getElementById("create-room").addEventListener("click", function(e) {
       e.preventDefault();
-      // Valor fixo: abrir uma sala e entrar custa 1.0 XRP
+      // Valor fixo: abrir ou entrar na sala custa 1.0 XRP
       const roomCost = 1.0;
       alert("Sala aberta com sucesso! Custo: " + roomCost + " XRP. Aguarde outro treinador ou escolha uma sala disponível.");
-      // Aqui você pode salvar essa informação, se necessário
+      // Aqui, você pode registrar a criação da sala em seu backend ou contrato.
       document.getElementById("lobby").style.display = "none";
       document.getElementById("game").style.display = "block";
     });
@@ -538,7 +536,6 @@
         document.getElementById("game").style.display = "block";
       });
     });
-    
   </script>
 </body>
 </html>
